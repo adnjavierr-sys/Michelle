@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Animada - Cumpleaños de Aranza Michelle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        /* --- FONDO DE PANTALLA ANIMADO --- */
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://z-cdn-media.chatglm.cn/files/6bd6250f-e9cd-4f61-8fbd-3c77b8624629_Bely%20Y%20%20beto.jpeg?auth_key=1792192016-f9fc2defcf4143b9b49fe147bd87b05c-0-4f0582906834161cd7a5edffa74bb30a');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            animation: zoomAnimation 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes zoomAnimation {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+        
+        .invitation-container {
+            width: 95%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            margin: 20px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .header {
+            background-color: #ff9800;
+            min-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .header-content {
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .title {
+            font-size: 3.6rem;
+            color: #ffffff;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            color: #fffde7;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+        }
+        
+        .content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .birthday-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .birthday-name {
+            font-size: 3rem;
+            color: #ff9800;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .birthday-age {
+            font-size: 2.2rem;
+            color: #283593;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .event-details-container {
+            background: #fff9c4;
+            border-radius: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 700px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .details-column {
+            flex: 1;
+        }
+
+        .map-column {
+            flex: 1.5;
+        }
+
+        .map-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 75%;
+            border-radius: 10px;
+            border: 3px solid #ffcc80;
+        }
+
+        .map-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .map-instructions {
+            font-size: 0.9rem;
+            color: #e65100;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .detail-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #ff6d00;
+        }
+        
+        .animated-image-container {
+            position: relative;
+            width: 80%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .animated-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .animated-image .img-background { z-index: 1; }
+        .animated-image .img-foreground {
+            z-index: 2;
+            animation: fadeAnimation 6s infinite ease-in-out;
+        }
+
+        @keyframes fadeAnimation {
+            0%, 100% { opacity: 1; }
+            45%, 55% { opacity: 0; }
+        }
+
+        .invitation-footer {
+            background: #ff9800;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .btn-rsvp {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-rsvp:hover {
+            background: #3949ab;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #ff3d00;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover { color: #d84315; }
+        
+        .modal-title {
+            font-size: 2.2rem;
+            color: #ff6d00;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1a237e;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ffcc80;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff9800;
+        }
+        
+        .submit-btn {
+            background: #ff6d00;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover { background: #ff9800; }
+        
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.8rem; }
+            .subtitle { font-size: 1.5rem; }
+            .birthday-name { font-size: 2.5rem; }
+            .birthday-age { font-size: 1.8rem; }
+            .content { padding: 20px; }
+            .modal-content { padding: 20px; }
+            .event-details-container {
+                flex-direction: column;
+                width: 95%;
+            }
+            .map-column {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .invitation-container { margin: 10px; }
+            .header { min-height: 200px; padding: 15px; }
+            .title { font-size: 2.2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .birthday-name { font-size: 2rem; }
+            .birthday-age { font-size: 1.5rem; }
+            .content { padding: 15px; }
+            .event-details-container { padding: 15px; }
+            .detail-item { font-size: 1rem; }
+            .animated-image-container { width: 90%; }
+            .invitation-footer { font-size: 1rem; padding: 15px; }
+            .btn-rsvp { font-size: 1rem; padding: 10px 25px; }
+            .modal-title { font-size: 1.8rem; }
+            .modal-content { padding: 15px; }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="title">¡Estás Invitado!</h1>
+                <h2 class="subtitle">EL SHOW DE BELY Y BETO</h2>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="birthday-info">
+                <h2 class="birthday-name">Aranza Michelle</h2>
+                <h3 class="birthday-age">¡Está cumpliendo 3 años!</h3>
+            </div>
+            
+            <div class="event-details-container">
+                <div class="details-column">
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <span>Fecha: 8/10/25</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">⏰</span>
+                        <span>Hora: 3:00pm</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <span>3817 Blvrd Pedro Anaya</span>
+                    </div>
+                </div>
+                <div class="map-column">
+                    <div class="map-wrapper">
+                        <!-- URL del mapa actualizada para Culiacán, Sinaloa -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.9428986106!2d-107.45963242461657!3d24.799306677364523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86b9e8f5e7f3b7b%3A0x1b3c1e1e1e1e1e1e!2s3817%20Blvrd%20Pedro%20Anaya%2C%20Culiac%C3%A1n%2C%20Sin.%2C%20M%C3%A9xico!5e0!3m2!1ses!2sus!4v1678886400000!5m2!1ses!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p class="map-instructions">¡Haz clic en el mapa para ver las indicaciones!</p>
+                </div>
+            </div>
+            
+            <div class="animated-image-container">
+                <div class="animated-image">
+                    <img src="https://z-cdn-media.chatglm.cn/files/ec61cbe6-76c8-4b92-be70-a907218829a1_0934e09f-3333-4315-94aa-f7ea8c7d6e48.jpeg?auth_key=1792192016-971bd766d4024961832b352beff9ff51-0-b91f78863732e64060d86ff40584e45c" alt="Bely y Beto" class="img-background">
+                    <img src="https://z-cdn-media.chatglm.cn/files/a203f236-afaf-455b-8a2e-01779f91a285_Gemini_Generated_Image_2fjb5l2fjb5l2fjb.png?auth_key=1792192016-3f30a52e3c004a218f9c6e657103f521-0-c14eeed9ea706816e89e5aa0b5fb2a4b" alt="Niña con vestuario de escenario" class="img-foreground">
+                </div>
+            </div>
+            
+            <button class="btn-rsvp" id="rsvpBtn">Confirmar Asistencia</button>
+        </div>
+        
+        <div class="invitation-footer">
+            <p>¡No faltes a esta fiesta llena de diversión y sorpresas!</p>
+            <p>Te esperamos para celebrar juntos</p>
+        </div>
+    </div>
+    
+    <div id="rsvpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">Confirmar Asistencia</h2>
+            <p>Por favor, completa los siguientes datos:</p>
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="guestName">Nombre completo:</label>
+                    <input type="text" id="guestName" required>
+                </div>
+                <div class="form-group">
+                    <label for="guestPhone">Teléfono:</label>
+                    <input type="tel" id="guestPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="guestCount">Número de asistentes (incluyéndote):</label>
+                    <input type="number" id="guestCount" min="1" value="1" required>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Confirmación</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                ¡Gracias por confirmar! ¡Te esperamos en la fiesta! 🎉
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const rsvpBtn = document.getElementById('rsvpBtn');
+        const rsvpModal = document.getElementById('rsvpModal');
+        const closeModal = document.getElementById('closeModal');
+        const rsvpForm = document.getElementById('rsvpForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        rsvpBtn.addEventListener('click', () => {
+            rsvpModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', () => {
+            rsvpModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === rsvpModal) {
+                rsvpModal.style.display = 'none';
+            }
+        });
+        
+        rsvpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            setTimeout(() => {
+                rsvpForm.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    rsvpModal.style.display = 'none';
+                    rsvpForm.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    rsvpForm.reset();
+                }, 3000);
+            }, 500);
+        });
+        
+        window.addEventListener('load', () => {
+            const elements = document.querySelectorAll('.birthday-info, .event-details-container, .animated-image-container, .btn-rsvp');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'opacity 0.5s, transform 0.5s';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
