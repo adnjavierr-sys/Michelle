@@ -619,21 +619,23 @@
             guestList.innerHTML = '';
 
             if (guests.length === 0) {
-                // Si no hay invitados, el contenedor sigue siendo visible pero vacío.
-                guestList.innerHTML = '<li class="guest-item">Aún no hay confirmados. ¡Sé el primero!</li>';
-            } else {
-                guests.forEach(guest => {
-                    const li = document.createElement('li');
-                    li.className = 'guest-item';
-                    li.innerHTML = `
-                        <div>
-                            <span class="guest-name">${guest.name}</span>
-                            <div class="guest-details">Tel: ${guest.phone} | Asistentes: ${guest.guests}</div>
-                        </div>
-                    `;
-                    guestList.appendChild(li);
-                });
+                guestListContainer.style.display = 'none';
+                return;
             }
+
+            guestListContainer.style.display = 'block';
+
+            guests.forEach(guest => {
+                const li = document.createElement('li');
+                li.className = 'guest-item';
+                li.innerHTML = `
+                    <div>
+                        <span class="guest-name">${guest.name}</span>
+                        <div class="guest-details">Tel: ${guest.phone} | Asistentes: ${guest.guests}</div>
+                    </div>
+                `;
+                guestList.appendChild(li);
+            });
         };
 
         rsvpForm.addEventListener('submit', (e) => {
@@ -647,7 +649,7 @@
             
             confirmedGuests.push({ name, phone, guests });
             
-            localStorage.setItem('confirmedGuests', JSON.stringify(confirmedGuests);
+            localStorage.setItem('confirmedGuests', JSON.stringify(confirmedGuests));
             
             displayGuestList();
             
@@ -661,6 +663,7 @@
                 rsvpForm.reset();
             }, 3000);
         });
+        
         
         // --- FIN DE LA LÓGICA DE LA LISTA DE CONFIRMADOS ---
 
@@ -724,3 +727,4 @@
     </script>
 </body>
 </html>
+
