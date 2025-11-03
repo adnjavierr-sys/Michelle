@@ -248,14 +248,14 @@
             max-width: 700px;
             margin-top: 20px;
             padding: 20px;
-            background-color: #e8f5e9; /* Un verde suave */
+            background-color: #e8f5e9;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: none; /* Oculto por defecto */
+            display: none;
         }
 
         .guest-list-container h3 {
-            color: #2e7d32; /* Verde oscuro */
+            color: #2e7d32;
             margin-bottom: 15px;
             text-align: center;
             font-size: 1.5rem;
@@ -297,6 +297,27 @@
             padding: 20px;
             font-size: 1.2rem;
         }
+        
+        /* --- ESTILOS PARA EL REPRODUCTOR DE MÚSICA --- */
+        .music-player-container {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto 0; /* Margen superior para separarlo del botón */
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-player-container audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+        }
+        /* --- FIN DE LOS ESTILOS DE MÚSICA --- */
         
         .btn-rsvp {
             background: #1a237e;
@@ -531,6 +552,14 @@
         </div>
         
         <div class="invitation-footer">
+            <!-- REPRODUCTOR DE MÚSICA -->
+            <div class="music-player-container">
+                <!-- PASO 3: PEGA AQUÍ EL ENLACE A TU ARCHIVO DE AUDIO -->
+                <audio controls loop>
+                    <source src="https://screenapp.io/app/app/v/hhEJmR-T1b" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
             <p>¡No faltes a esta fiesta llena de diversión y sorpresas!</p>
             <p>Te esperamos para celebrar juntos</p>
         </div>
@@ -587,17 +616,16 @@
         
         // --- LÓGICA PARA GUARDAR Y MOSTRAR LA LISTA DE CONFIRMADOS ---
         
-        // Función para mostrar la lista de invitados en el HTML
         const displayGuestList = () => {
             const guests = JSON.parse(localStorage.getItem('confirmedGuests')) || [];
-            guestList.innerHTML = ''; // Limpiar la lista actual
+            guestList.innerHTML = '';
 
             if (guests.length === 0) {
-                guestListContainer.style.display = 'none'; // Ocultar si no hay invitados
+                guestListContainer.style.display = 'none';
                 return;
             }
 
-            guestListContainer.style.display = 'block'; // Mostrar el contenedor
+            guestListContainer.style.display = 'block';
 
             guests.forEach(guest => {
                 const li = document.createElement('li');
@@ -612,7 +640,6 @@
             });
         };
 
-        // Manejar el envío del formulario
         rsvpForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -620,19 +647,14 @@
             const phone = document.getElementById('guestPhone').value;
             const guests = document.getElementById('guestCount').value;
 
-            // Obtener la lista actual de invitados del localStorage
             let confirmedGuests = JSON.parse(localStorage.getItem('confirmedGuests')) || [];
             
-            // Añadir el nuevo invitado
             confirmedGuests.push({ name, phone, guests });
             
-            // Guardar la lista actualizada en el localStorage
             localStorage.setItem('confirmedGuests', JSON.stringify(confirmedGuests));
             
-            // Mostrar la lista actualizada
             displayGuestList();
             
-            // Mostrar mensaje de éxito y resetear el formulario
             rsvpForm.style.display = 'none';
             successMessage.style.display = 'block';
             
@@ -658,7 +680,6 @@
                     el.style.transform = 'translateY(0)';
                 }, index * 200);
             });
-            // Cargar la lista de invitados al cargar la página
             displayGuestList();
         });
 
